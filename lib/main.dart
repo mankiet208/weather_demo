@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_demo/config/assets.dart';
 import 'package:weather_demo/ui/core/themes/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:weather_demo/ui/core/widgets/error_screen.dart';
+import 'package:weather_demo/ui/core/widgets/loading_widget.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -39,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(IconAssets.loading),
+        child: LoadingWidget(),
       ),
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:weather_demo/config/assets.dart';
 import 'package:weather_demo/ui/core/themes/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:weather_demo/ui/core/widgets/error_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -15,11 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      home: const MyHomePage(),
+      themeMode: ThemeMode.system,
+      home: MyHomePage(),
     );
   }
 }

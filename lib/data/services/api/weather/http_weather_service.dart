@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:weather_demo/data/api_exception.dart';
-import 'package:weather_demo/data/services/weather/open_weather_api.dart';
-import 'package:weather_demo/data/services/weather/weather_service.dart';
+import 'package:weather_demo/data/services/api/api_exception.dart';
+import 'package:weather_demo/data/services/api/weather/open_weather_api.dart';
+import 'package:weather_demo/data/services/api/weather/weather_service.dart';
 import 'package:weather_demo/domain/models/forecast/forecast.dart';
 import 'package:weather_demo/domain/models/weather/weather.dart';
 import 'package:weather_demo/domain/models/weather_request.dart';

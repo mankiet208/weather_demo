@@ -1,4 +1,8 @@
 {
   "general_retry": "Retry",
-  "error_somethingWrong": "Something went wrong at our end!"
+  "general_openSetting": "Open Setting",
+  "error_somethingWrong": "Something went wrong at our end!",
+  "error_permissionLocationDenied": "Access to the location of the device is denied by the user.",
+  "error_permissionLocationEnable": "Please enable Location permission in the app setting.",
+  "error_permissionLocationUnknown": "Location permission cannot be determined."
 }

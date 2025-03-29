@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:weather_demo/ui/core/themes/colors.dart';
 import 'package:weather_demo/utils/extensions/context_extension.dart';
+import 'package:weather_demo/utils/extensions/string_extension.dart';
 
 class WeatherHeader extends StatelessWidget {
-  const WeatherHeader({super.key});
+  const WeatherHeader({
+    super.key,
+    required this.temperature,
+    required this.location,
+  });
+
+  final double temperature;
+  final String location;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +19,7 @@ class WeatherHeader extends StatelessWidget {
       children: [
         const SizedBox(height: 56),
         Text(
-          '20',
+          '${temperature.round()}'.addDegreeSymbol(),
           style: TextStyle(
             color: context.colorScheme.onSurface,
             fontSize: 96,
@@ -20,7 +28,7 @@ class WeatherHeader extends StatelessWidget {
           ),
         ),
         Text(
-          'Bangalore',
+          location,
           style: TextStyle(
             color: AppColors.blue1,
             fontSize: 36,

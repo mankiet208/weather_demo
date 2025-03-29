@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:weather_demo/ui/core/themes/dimens.dart';
 import 'package:weather_demo/utils/extensions/context_extension.dart';
+import 'package:weather_demo/utils/extensions/date_time_extension.dart';
+import 'package:weather_demo/utils/extensions/string_extension.dart';
 
 class WeatherRow extends StatelessWidget {
-  const WeatherRow({super.key});
+  const WeatherRow({
+    super.key,
+    required this.date,
+    required this.temperature,
+  });
+
+  final DateTime date;
+  final double temperature;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +24,7 @@ class WeatherRow extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'Mondey',
+            date.getWeekDayName(),
             style: TextStyle(
               color: context.colorScheme.onSurface,
               fontSize: 16,
@@ -24,7 +33,7 @@ class WeatherRow extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            '24 C',
+            '${temperature.round()}'.addDegreeSymbol(),
             style: TextStyle(
               color: context.colorScheme.onSurface,
               fontSize: 16,

@@ -12,9 +12,9 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.colorScheme.error,
-      body: Column(
+    return Container(
+      color: context.colorScheme.error,
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

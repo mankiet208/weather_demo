@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_demo/config/dependencies.dart';
 import 'package:weather_demo/ui/core/themes/theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:weather_demo/ui/home/weather_screen.dart';
+import 'package:weather_demo/ui/home/widgets/home_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await dotenv.load(fileName: ".env");
 
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: providerRemote,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +30,9 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
-      home: WeatherScreen(),
+      home: HomeScreen(
+        viewModel: context.read(),
+      ),
     );
   }
 }

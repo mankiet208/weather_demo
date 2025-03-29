@@ -5,5 +5,5 @@ import 'package:weather_demo/utils/result.dart';
 
 abstract class WeatherRepository {
   Future<Result<Weather>> getCurrentWeather(WeatherRequest request);
-  Future<Result<Forecast>> getWeatherForecast5Days(WeatherRequest request);
+  Future<Result<Forecast>> getWeatherForecast(WeatherRequest request);
 }

@@ -29,7 +29,7 @@ class HttpWeatherService implements WeatherService {
   }
 
   @override
-  Future<Result<Forecast>> getWeatherForecast5Days(WeatherRequest request) {
+  Future<Result<Forecast>> getWeatherForecast(WeatherRequest request) {
     return _getData(
       uri: _api.forecast(request),
       builder: (data) => Forecast.fromJson(data),

@@ -5,23 +5,21 @@ part 'weather.freezed.dart';
 part 'weather.g.dart';
 
 @freezed
-abstract class WeatherParams with _$WeatherParams {
-  factory WeatherParams({
+abstract class WeatherMain with _$WeatherMain {
+  factory WeatherMain({
     required double temp,
-    @JsonKey(name: 'temp_min') required double tempMin,
-    @JsonKey(name: 'temp_max') required double tempMax,
-  }) = _WeatherParams;
+  }) = _WeatherMain;
 
-  factory WeatherParams.fromJson(Map<String, dynamic> json) =>
-      _$WeatherParamsFromJson(json);
+  factory WeatherMain.fromJson(Map<String, dynamic> json) =>
+      _$WeatherMainFromJson(json);
 }
 
 @freezed
 abstract class Weather with _$Weather {
   factory Weather({
-    @JsonKey(name: 'main') required WeatherParams weatherParams,
-    required String name,
+    @JsonKey(name: 'main') required WeatherMain main,
     required int dt,
+    String? name,
   }) = _Weather;
 
   factory Weather.fromJson(Map<String, dynamic> json) =>

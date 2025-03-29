@@ -6,18 +6,17 @@ import 'package:weather_demo/domain/models/weather_request.dart';
 import 'package:weather_demo/utils/result.dart';
 
 class WeatherRepositoryImp implements WeatherRepository {
-  WeatherRepositoryImp({required WeatherService weatherService})
-      : _weatherService = weatherService;
+  WeatherRepositoryImp({required WeatherService service}) : _service = service;
 
-  final WeatherService _weatherService;
+  final WeatherService _service;
 
   @override
   Future<Result<Weather>> getCurrentWeather(WeatherRequest request) {
-    return _weatherService.getCurrentWeather(request);
+    return _service.getCurrentWeather(request);
   }
 
   @override
-  Future<Result<Forecast>> getWeatherForecast5Days(WeatherRequest request) {
-    return _weatherService.getWeatherForecast5Days(request);
+  Future<Result<Forecast>> getWeatherForecast(WeatherRequest request) {
+    return _service.getWeatherForecast(request);
   }
 }

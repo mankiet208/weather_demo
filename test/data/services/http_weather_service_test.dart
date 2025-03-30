@@ -3,12 +3,11 @@ import 'package:weather_demo/data/services/api/api_exception.dart';
 import 'package:weather_demo/data/services/api/weather/http_weather_service.dart';
 import 'package:weather_demo/data/services/api/weather/open_weather_api.dart';
 import 'package:weather_demo/data/services/api/weather/weather_service.dart';
+import 'package:weather_demo/testing/mock_api.dart';
+import 'package:weather_demo/testing/models/forecast.dart';
+import 'package:weather_demo/testing/models/request.dart';
+import 'package:weather_demo/testing/models/weather.dart';
 import 'package:weather_demo/utils/result.dart';
-
-import '../../mocks/mocks.dart';
-import '../../mocks/models/forecast.dart';
-import '../../mocks/models/request.dart';
-import '../../mocks/models/weather.dart';
 
 void main() {
   group('ApiClient', () {

@@ -2,12 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:weather_demo/data/repositories/weather/weather_repository.dart';
 import 'package:weather_demo/data/repositories/weather/weather_repository_imp.dart';
 import 'package:weather_demo/data/services/api/weather/weather_service.dart';
+import 'package:weather_demo/testing/data/services/mock_weather_service.dart';
+import 'package:weather_demo/testing/models/forecast.dart';
+import 'package:weather_demo/testing/models/request.dart';
+import 'package:weather_demo/testing/models/weather.dart';
 import 'package:weather_demo/utils/result.dart';
-
-import '../../mocks/data/services/fake_weather_service.dart';
-import '../../mocks/models/forecast.dart';
-import '../../mocks/models/request.dart';
-import '../../mocks/models/weather.dart';
 
 void main() {
   group('WeatherRepository tests', () {
@@ -15,7 +14,7 @@ void main() {
     late WeatherRepository weatherRepository;
 
     setUp(() {
-      weatherService = FakeWeatherService();
+      weatherService = MockWeatherService();
       weatherRepository = WeatherRepositoryImp(service: weatherService);
     });
 

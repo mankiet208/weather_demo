@@ -7,7 +7,7 @@ import 'package:weather_demo/utils/result.dart';
 import '../../models/forecast.dart';
 import '../../models/weather.dart';
 
-class FakeWeatherRepository implements WeatherRepository {
+class MockWeatherRepository implements WeatherRepository {
   @override
   Future<Result<Weather>> getCurrentWeather(WeatherRequest request) async {
     return Result.ok(kWeather);
@@ -19,7 +19,7 @@ class FakeWeatherRepository implements WeatherRepository {
   }
 }
 
-class FakeErrorWeatherRepository implements WeatherRepository {
+class MockErrorWeatherRepository implements WeatherRepository {
   @override
   Future<Result<Weather>> getCurrentWeather(WeatherRequest request) async {
     return Result.error(Exception('Cannot get current weather'));

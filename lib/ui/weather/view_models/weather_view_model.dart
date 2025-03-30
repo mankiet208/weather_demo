@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:weather_demo/data/repositories/weather/weather_repository.dart';
 import 'package:weather_demo/domain/models/forecast/forecast.dart';
 import 'package:weather_demo/domain/models/temperature_by_date.dart';
 import 'package:weather_demo/domain/models/weather/weather.dart';
 import 'package:weather_demo/domain/models/weather_request.dart';
 import 'package:weather_demo/utils/command.dart';
+import 'package:weather_demo/utils/geolocator_utils.dart';
 import 'package:weather_demo/utils/result.dart';
 
 class _ListTemperatureByDate {
@@ -21,11 +21,14 @@ class _ListTemperatureByDate {
 class WeatherViewModel extends ChangeNotifier {
   WeatherViewModel({
     required WeatherRepository weatherRepository,
-  }) : _weatherRepository = weatherRepository {
+    required GeolocatorManager geolocatorManager,
+  })  : _weatherRepository = weatherRepository,
+        _geolocatorManager = geolocatorManager {
     load = Command0(_load)..execute();
   }
 
   final WeatherRepository _weatherRepository;
+  final GeolocatorManager _geolocatorManager;
 
   late Command0 load;
 
@@ -39,7 +42,7 @@ class WeatherViewModel extends ChangeNotifier {
       _dailyAverageTemperatures;
 
   Future<Result> _load() async {
-    final position = await Geolocator.getCurrentPosition();
+    final position = await _geolocatorManager.getCurrentPosition();
     final request = WeatherRequest(
       lat: position.latitude,
       lon: position.longitude,

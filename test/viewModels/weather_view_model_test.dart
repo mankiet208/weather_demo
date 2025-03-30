@@ -1,17 +1,29 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:weather_demo/data/repositories/weather/weather_repository.dart';
+import 'package:weather_demo/testing/data/repositories/mock_weather_repository.dart';
+import 'package:weather_demo/testing/mock_geolocator_manager.dart';
+import 'package:weather_demo/testing/models/forecast.dart';
 import 'package:weather_demo/ui/weather/view_models/weather_view_model.dart';
-
-import '../mocks/data/repositories/fake_weather_repository.dart';
-import '../mocks/models/forecast.dart';
+import 'package:weather_demo/utils/geolocator_utils.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  group('WeatherViewModel tests', () {
-    test('load: should fetch the current weather and forecast', () async {
-      final weatherRepository = FakeWeatherRepository();
-      final weatherViewModel =
-          WeatherViewModel(weatherRepository: weatherRepository);
 
+  late GeolocatorManager geolocatorManager;
+  late WeatherRepository weatherRepository;
+  late WeatherViewModel weatherViewModel;
+
+  group('WeatherViewModel tests', () {
+    setUp(() {
+      geolocatorManager = MockGeolocatorManager();
+      weatherRepository = MockWeatherRepository();
+      weatherViewModel = WeatherViewModel(
+        weatherRepository: weatherRepository,
+        geolocatorManager: geolocatorManager,
+      );
+    });
+
+    test('load: should fetch the current weather and forecast', () async {
       if (weatherViewModel.load.isCompleted) {
         expect(weatherViewModel.currentWeather, isNotNull);
         expect(weatherViewModel.forecast, isNotNull);
@@ -20,10 +32,6 @@ void main() {
 
     test('load: should return error if fetch current weather is failed',
         () async {
-      final weatherRepository = FakeErrorWeatherRepository();
-      final weatherViewModel =
-          WeatherViewModel(weatherRepository: weatherRepository);
-
       if (weatherViewModel.load.isCompleted) {
         expect(weatherViewModel.currentWeather, isNull);
         expect(
@@ -35,10 +43,6 @@ void main() {
 
     test('load: should return error if fetch  weather forecast is failed',
         () async {
-      final weatherRepository = FakeErrorWeatherRepository();
-      final weatherViewModel =
-          WeatherViewModel(weatherRepository: weatherRepository);
-
       if (weatherViewModel.load.isCompleted) {
         expect(weatherViewModel.forecast, isNull);
         expect(
@@ -50,9 +54,6 @@ void main() {
 
     test('calculateDailyAverageTemperature: should return 4 days forecast',
         () async {
-      final weatherRepository = FakeWeatherRepository();
-      final weatherViewModel =
-          WeatherViewModel(weatherRepository: weatherRepository);
       final dailyAverageTemp =
           weatherViewModel.calculateDailyAverageTemperature(kForecast);
 
@@ -62,9 +63,6 @@ void main() {
     test(
         'calculateDailyAverageTemperature: should return correct average temperature',
         () async {
-      final weatherRepository = FakeWeatherRepository();
-      final weatherViewModel =
-          WeatherViewModel(weatherRepository: weatherRepository);
       final dailyAverageTemp =
           weatherViewModel.calculateDailyAverageTemperature(kForecast);
 

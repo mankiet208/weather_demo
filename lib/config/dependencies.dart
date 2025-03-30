@@ -9,9 +9,13 @@ import 'package:http/http.dart' as http;
 import 'package:weather_demo/data/services/api/weather/weather_service.dart';
 import 'package:weather_demo/ui/home/view_models/home_view_model.dart';
 import 'package:weather_demo/ui/weather/view_models/weather_view_model.dart';
+import 'package:weather_demo/utils/geolocator_utils.dart';
 
 List<SingleChildWidget> get providerRemote {
   return [
+    Provider(
+      create: (context) => GeolocatorManager(),
+    ),
     Provider(
       create: (context) => OpenWeatherAPI(
         apiKey: Secrets.OPEN_WEATHER_API_KEY.value,
@@ -37,6 +41,7 @@ List<SingleChildWidget> get providerRemote {
     ChangeNotifierProvider(
       create: (context) => WeatherViewModel(
         weatherRepository: context.read(),
+        geolocatorManager: context.read(),
       ),
     ),
   ];

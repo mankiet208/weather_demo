@@ -42,6 +42,7 @@ class HttpWeatherService implements WeatherService {
   }) async {
     try {
       final response = await _client.get(uri);
+
       switch (response.statusCode) {
         case 200:
           final data = json.decode(response.body);

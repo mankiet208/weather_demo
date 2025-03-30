@@ -34,6 +34,7 @@ class WeatherViewModel extends ChangeNotifier {
   List<TemperatureByDate> _dailyAverageTemperatures = [];
 
   Weather? get currentWeather => _currentWeather;
+  Forecast? get forecast => _forecast;
   List<TemperatureByDate> get dailyAverageTemperatures =>
       _dailyAverageTemperatures;
 
@@ -63,12 +64,12 @@ class WeatherViewModel extends ChangeNotifier {
         return forecastResult;
     }
 
-    _dailyAverageTemperatures = _calculateDailyAverageTemperature(_forecast!);
+    _dailyAverageTemperatures = calculateDailyAverageTemperature(_forecast!);
 
     return Result.ok(null);
   }
 
-  List<TemperatureByDate> _calculateDailyAverageTemperature(Forecast forecast) {
+  List<TemperatureByDate> calculateDailyAverageTemperature(Forecast forecast) {
     if (forecast.list.isEmpty) return [];
 
     // Group temperature by date

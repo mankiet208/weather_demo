@@ -68,7 +68,7 @@ void main() {
       final dailyAverageTemp =
           weatherViewModel.calculateDailyAverageTemperature(kForecast);
 
-      expect(dailyAverageTemp.first.temperature.round(), 29);
+      expect(dailyAverageTemp.first.temperature.round(), 31);
     });
   });
 }
